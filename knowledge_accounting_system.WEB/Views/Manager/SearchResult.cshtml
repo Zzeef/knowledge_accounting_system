@@ -1,0 +1,24 @@
+﻿@model List<knowledge_accounting_system.WEB.Models.UserMarkModel>
+<table class="table table-striped" style="margin-top:10px">
+    <tr align="center">
+        <th>Имя</th>
+        <th>Предмет</th>
+        <th>Оценка</th>
+    </tr>
+    @if (Model == null)
+    {
+        <tr>Ничего не найдено</tr>
+    }
+    else
+    {
+        foreach (var i in Model)
+        {
+            <tr align="center">
+                <th>@i.Name</th>
+                <th>@i.Mark</th>
+                <th>@i.Score/5</th>
+            </tr>
+
+        }
+    }
+</table>

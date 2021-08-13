@@ -1,0 +1,27 @@
+﻿@model knowledge_accounting_system.WEB.Models.PostAddModel
+@{
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+@Html.ValidationSummary()
+<div class="panel panel-primary">
+    <div class="form-group" style="text-align:center">
+        <p class="text-primary rounded border border - light" style="padding-top:8px;padding-bottom:8px;font-size:20px;">Добавление поста</p>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            <label>Заголовок</label>
+            @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Текст</label>
+            @Html.TextAreaFor(x => x.Text, new { @class = "form-control", style ="height:300px" })
+        </div>
+        <input name="Name" type="hidden" value="@User.Identity.Name" />
+        <input name="Date" type="hidden" value="@DateTime.Now" />
+        <button type="submit" class="btn btn-primary">Добавить</button>
+        @Html.ActionLink("Отмена", "Index", "Home", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Удалить пост", "DeletePost", null, new { @class = "btn btn-primary",style="float:right"})
+    }
+</div>
+

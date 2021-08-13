@@ -1,0 +1,22 @@
+﻿@using knowledge_accounting_system.BLL.DTO
+@model UserDTO
+@{
+    ViewBag.Title = "Ваш профиль";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form-group" style="text-align:center">
+        <p class="text-primary rounded border border - light" style="padding-top:8px;padding-bottom:8px;font-size:20px">Ваш профиль</p>
+    </div>
+    <div class="form-group">
+        <label>Имя</label>
+        <p class="form-control">@Model.Name</p>
+        <label>Email</label>
+        <p class="form-control">@Model.Email</p>
+    </div>
+}
+@Html.ActionLink("Предметы", "MarkMenu", "User", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Редактировать профиль", "Edit", "User", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Выйти", "Logout", "Account", null, new { @class = "btn btn-primary", style = "float:right" })
+

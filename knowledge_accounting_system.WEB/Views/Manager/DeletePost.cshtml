@@ -1,0 +1,48 @@
+﻿@using knowledge_accounting_system.BLL.DTO
+@model List<PostDTO>
+@{
+    ViewBag.Title = "Home Page";
+    if (User.IsInRole("manager"))
+    {
+        Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+    }
+}
+
+<div class="panel panel-primary">
+    <div class="form-group" style="text-align:center">
+        <p class="text-primary rounded border border - light" style="padding-top:8px;padding-bottom:8px;font-size:20px">Посты</p>
+    </div>
+    @Html.ValidationSummary(true)
+    @{ 
+        List<PostDTO> manager_post = new List<PostDTO>();
+        foreach (var i in Model)
+        {
+            if (i.Name == User.Identity.Name) 
+            {
+                manager_post.Add(i);
+            }
+        }
+    }
+    @if (manager_post.Count == 0)
+    {
+        <label>Вы не добавляли постов</label>
+    }
+    else
+    {
+        foreach (var i in Model)
+        {
+            if (User.Identity.Name == i.Name)
+            {
+                <div class="rounded border border" style="padding-left:20px; padding-right:20px; padding-top:10px; padding-bottom:30px; margin-bottom:10px">
+                    <label class="font-weight-bold" style="font-size:25px">@i.Title</label>
+                    <p>@i.Text</p>
+                    <p style="float:right">Автор: @i.Name  Дата: @i.Date.ToShortDateString()</p>
+                    @using (Html.BeginForm("DeletePost", "Manager", new { id = i.Id }))
+                    {
+                        <button class="btn btn-danger btn-xs" type="submit">Удалить</button>
+                    }
+                </div>
+            }
+        }
+    }
+</div>

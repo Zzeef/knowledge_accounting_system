@@ -1,0 +1,43 @@
+﻿@using knowledge_accounting_system.BLL.DTO
+@model IEnumerable<MarkDTO>
+@{
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+    AjaxOptions ajaxOptions = new AjaxOptions
+    {
+        UpdateTargetId = "results"
+    };
+}
+@Scripts.Render("~/scripts/jquery-3.0.0.min.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+
+@using (Ajax.BeginForm("SearchResult",ajaxOptions))
+{
+    <div class="d-flex">
+        <select class="form-control" name="Sort">
+            <option value="true">По алфавиту</option>
+            <option value="false">Против алфавита</option>
+        </select>
+        <select class="form-control" name="Mark" style="margin-left:5px">
+            <option>Предметы</option>
+            @foreach (var i in Model)
+            {
+                <option>@i.Name</option>
+            }
+        </select>
+        <select class="form-control" name="Score" style="margin-left:5px">
+            <option value="0">Оценка</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+        <button class="btn btn-primary" style="margin-left:5px">Найти</button>
+    </div>
+}
+<div id="results"></div>
+
+
+
+
+

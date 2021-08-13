@@ -1,0 +1,30 @@
+﻿@model knowledge_accounting_system.BLL.DTO.UserDTO
+
+@{
+    ViewBag.Title = "Edit";
+}
+@Html.ValidationSummary(false)
+
+<div class="form-group" style="text-align:center">
+    <p class="text-primary rounded border border - light" style="padding-top:8px;padding-bottom:8px;font-size:20px">Редактирование профиля</p>
+</div>
+<div class="form-group">
+    <label>Имя</label>
+    <p class="form-control">@User.Identity.Name</p>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.Id)
+    <div class="form-group">
+        <label>Email</label>
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", type="email" })
+    </div>
+    <div class="form-group">
+        <label>Пароль</label>
+        <input name="password" type="password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" />
+        <p style="font-size:12px"> Пароль должен содержать 6 или более символов, которые имеют хотя бы одно число, и одну букву верхнего и нижнего регистра</p>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    @Html.ActionLink("Отмена", "Profile", null, new { @class = "btn btn-default" })
+}

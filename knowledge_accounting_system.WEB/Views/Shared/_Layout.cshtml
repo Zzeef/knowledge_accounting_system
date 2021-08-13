@@ -1,0 +1,27 @@
+﻿﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+</head>
+<body class="container">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand" href="~/Home/Index">Система учёта знаний</a>
+        @Html.ActionLink("Профиль", "Profile", "User", null, new { @class = "btn btn-outline-success my-2 my-sm-0" })
+    </nav>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <style>
+        .container {
+            padding-top: 10px;
+        }
+
+        .validation-summary-errors {
+            color: #f00;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿@using knowledge_accounting_system.WEB.Models
+@model List<MarkAddModel>
+
+@{
+    ViewBag.Title = "Ваши предметы";
+}
+
+<div class="panel panel-primary">
+    <div class="form-group" style="text-align:center">
+        <p class="text-primary rounded border border - light" style="padding-top:8px;padding-bottom:8px;font-size:20px">Предметы</p>
+    </div>
+    <table class="table table-hover">
+        <tr align="center">
+            <th>Название</th>
+            <th>Оценка</th>
+            <th> </th>
+        </tr>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="4" class="text-center">Нет предметов</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var i in Model)
+            {
+                <tr align="center">
+                    <td class="font-weight-normal">@i.Name</td>
+                    <td class="font-weight-normal">@i.Score/5</td>
+                    <td>
+                        @using (Html.BeginForm("DeleteMark", "User", new { UserName = User.Identity.Name, MarkName = i.Name, Score = i.Score }))
+                            {
+                                <button class="btn btn-danger btn-xs" type="submit">Удалить</button>
+                            }
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Добавить предмет", "Add", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Назад", "Profile", "User", null, new { @class = "btn btn-default" })
+</div>

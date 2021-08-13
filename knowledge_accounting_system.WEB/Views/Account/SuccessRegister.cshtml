@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Окончание регистрации";
+    Layout = "~/Views/Shared/_Menu.cshtml";
+}
+
+<h2>Вы были успешно зарегистрированы. Используйте свой адрес электронной почты и пароль для входа на сайт</h2>
+<div style="text-align:center; margin-top: 20px">
+    @Html.ActionLink("Перейти на страницу входа", "Login", null, new { @class = "btn btn-primary" })
+</div>
